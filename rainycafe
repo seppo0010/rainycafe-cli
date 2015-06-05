@@ -1,0 +1,17 @@
+#!/bin/bash
+
+if [ $# -ne 2 ]
+then
+    >&2 echo "Usage: $0 <cafe volume (0-255)> <rain volume (0-255)>"
+    exit 1
+fi
+
+bash cafe.sh -v $1 &
+PID1="$!"
+
+bash rain.sh -v $2 &
+PID2="$!"
+
+trap "trap - SIGTERM && kill -- -$$" SIGINT SIGTERM EXIT
+
+wait
