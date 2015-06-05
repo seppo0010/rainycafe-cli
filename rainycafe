@@ -6,10 +6,12 @@ then
     exit 1
 fi
 
-bash cafe.sh -v $1 &
+DIR=$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )
+
+bash $DIR/player.sh -v $1 $DIR/audio/cafe.mp3 &
 PID1="$!"
 
-bash rain.sh -v $2 &
+bash $DIR/player.sh -v $2 $DIR/audio/rain.mp3 &
 PID2="$!"
 
 trap "trap - SIGTERM && kill -- -$$" SIGINT SIGTERM EXIT

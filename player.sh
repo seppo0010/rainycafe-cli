@@ -2,5 +2,5 @@
 
 while true
 do
-    afplay $* audio/rain.mp3
+    afplay $*
 done
