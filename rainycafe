@@ -7,7 +7,7 @@ if [ $# -ne 0 ]
 then
     if [ $# -ne 2 ]
     then
-        >&2 echo "Usage: $0 <cafe volume (0-255)> <rain volume (0-255)>"
+        >&2 echo "Usage: $0 <cafe volume (0-15)> <rain volume (0-15)>"
         exit 1
     fi
     CAFE_VOLUME=$1
@@ -16,9 +16,4 @@ fi
 
 DIR=$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )
 
-bash $DIR/player.sh -v $CAFE_VOLUME $DIR/audio/cafe.mp3 &
-bash $DIR/player.sh -v $RAIN_VOLUME $DIR/audio/rain.mp3 &
-
-trap "kill -- -$$ ; exit 0" SIGINT SIGTERM EXIT
-
-wait
+play --combine mix -v $CAFE_VOLUME $DIR/audio/cafe.mp3 -v $RAIN_VOLUME $DIR/audio/rain.mp3 repeat -

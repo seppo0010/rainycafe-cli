@@ -5,6 +5,20 @@ higher creativity.”
 
 Source: Exploring the Effects of Ambient Noise on Creative Cognition
 
+# Dependencies
+
+`rainycafe-cli` requires `SoX`. To install on OS X run:
+
+```
+brew install sox
+```
+
+On Ubuntu/Debian
+
+```
+apt-get install sox
+```
+
 # Usage
 
 ```
