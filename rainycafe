@@ -17,11 +17,8 @@ fi
 DIR=$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )
 
 bash $DIR/player.sh -v $CAFE_VOLUME $DIR/audio/cafe.mp3 &
-PID1="$!"
-
 bash $DIR/player.sh -v $RAIN_VOLUME $DIR/audio/rain.mp3 &
-PID2="$!"
 
-trap "trap - SIGTERM && kill -- -$$" SIGINT SIGTERM EXIT
+trap "kill -- -$$ ; exit 0" SIGINT SIGTERM EXIT
 
 wait
